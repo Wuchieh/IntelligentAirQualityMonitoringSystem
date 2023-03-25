@@ -1,8 +1,8 @@
 package main
 
 import (
-	"IntelligentAirQualityMonitoringSystem/server"
 	"encoding/json"
+	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/server"
 	"log"
 	"os"
 	"os/signal"

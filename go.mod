@@ -1,4 +1,4 @@
-module IntelligentAirQualityMonitoringSystem
+module github.com/Wuchieh/IntelligentAirQualityMonitoringSystem
 
 go 1.20
 
