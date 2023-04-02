@@ -9,7 +9,6 @@ English | [繁體中文](README_tw.md)
 ```
 PostgreSQL
 Redis
-Nginx
 go version > 1.20
 ```
 
