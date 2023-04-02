@@ -1,5 +1,18 @@
 {
   "IP": "",
   "PORT": "8080",
-  "RUN MODE": "Debug"
+  "RUN MODE": "Debug",
+
+  "databaseHost": "<DataBase Host>",
+  "databaseUser": "<DataBase Username>",
+  "databasePassword": "<DataBase Password>",
+  "databaseDbname": "<DataBase Name>",
+
+  "lineChannelSecret": "<Line Channel Secret>",
+  "lineChannelAccessToken": "<Line Channel access token>",
+  "lineCommandPrefix": "!",
+
+  "redisAddr": "<Redis Host>",
+  "redisPassword": "<Redis Password>",
+  "redisDB":0
 }

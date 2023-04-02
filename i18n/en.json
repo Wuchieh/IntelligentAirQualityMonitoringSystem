@@ -1,0 +1,20 @@
+{
+  "ButtonsTemplateTitle": "Login/Link Account",
+  "ButtonsTemplateText":"Please click the button below within five minutes",
+  "ButtonsTemplateLabel": "Press for Login",
+  "Setting": "Setting",
+  "Locations": "Locations Info",
+  "NoticeRange": "Notification interval",
+  "notGetUseridFromLine": "Line is not yet linked to any account.\nTo connect an account, click on 登入/連動帳號 in the menu,\nor enter{commandPrefix}login",
+  "locationsCount0": "You have not set up any location, please go to the website first to set up.",
+  "delete": "Delete",
+  "meters":"Meters",
+  "isDeleted": "Deleted successfully",
+  "isSelectRange": "the range has been set to",
+  "editError_isDeleted": "This position has been deleted and cannot be edited",
+  "noNotification": "No notice",
+  "hours": "hours",
+  "hour": "hour",
+  "inputDataError": "The data entered is incorrect.",
+  "setNoticeRange": "The notification interval has been set to"
+}

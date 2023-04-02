@@ -1,0 +1,20 @@
+{
+  "ButtonsTemplateTitle": "登入/連動帳號",
+  "ButtonsTemplateText": "請在五分鐘內點擊下方按鈕",
+  "ButtonsTemplateLabel": "點擊登入",
+  "Setting": "設定",
+  "Locations": "地點資訊",
+  "NoticeRange": "通知間隔",
+  "notGetUseridFromLine": "Line尚未與任何帳號連動\n若要連動帳號請點擊選單中的 登入/連動帳號\n或輸入{commandPrefix}login",
+  "locationsCount0": "您尚未設置任何位置，請先至網站設置",
+  "delete": "刪除",
+  "meters":"公尺",
+  "isDeleted": "已成功刪除",
+  "isSelectRange": "已將範圍設定為",
+  "editError_isDeleted": "此位置已被刪除 無法編輯",
+  "noNotification": "無通知",
+  "hours": "小時",
+  "hour": "小時",
+  "inputDataError": "輸入的資料錯誤",
+  "setNoticeRange": "已將通知間隔設定為"
+}

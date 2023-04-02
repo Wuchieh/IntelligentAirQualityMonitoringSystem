@@ -1,11 +1,17 @@
 package server
 
 import (
+	"errors"
+	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/database"
 	"github.com/gin-gonic/gin"
 	"strings"
 )
 
 func Run(ip, port, mode string) error {
+	if s := <-database.Sign; s != 0 {
+		return errors.New("\033[31m 資料庫初始化錯誤 \033[0m")
+	}
+
 	setGinMode(mode)
 	r := gin.Default()
 	Router(r)

@@ -2,6 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/database"
+	_ "github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/redis"
 	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/server"
 	"log"
 	"os"
@@ -30,14 +32,14 @@ func init() {
 }
 
 func main() {
+	database.DatabaseInit()
+	sc := make(chan os.Signal, 1)
+
 	go func() {
-		err := server.Run(setting.IP, setting.PORT, setting.RUNMODE)
-		if err != nil {
-			log.Panicln(err)
-		}
+		defer func() { sc <- syscall.SIGINT }()
+		_ = server.Run(setting.IP, setting.PORT, setting.RUNMODE)
 	}()
 
-	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 }

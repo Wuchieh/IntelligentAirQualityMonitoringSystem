@@ -1,0 +1,66 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": []
+  },
+  "hero": {
+    "type": "image",
+    "url": "https://www.wuchieh.tk/Logo/Logo.png",
+    "size": "md",
+    "margin": "xxl",
+    "aspectMode": "fit",
+    "animated": true,
+    "gravity": "center",
+    "offsetTop": "none"
+  },
+  "body": {
+    "type": "box",
+    "layout": "baseline",
+    "contents": [
+      {
+        "type": "text",
+        "text": "設定",
+        "margin": "none",
+        "align": "center",
+        "size": "3xl"
+      }
+    ],
+    "offsetTop": "none",
+    "position": "relative",
+    "spacing": "md",
+    "margin": "md"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "data": "Locations",
+          "label": "地點"
+        },
+        "style": "secondary",
+        "margin": "md",
+        "offsetBottom": "md"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "通知間隔",
+          "data": "SetNoticeRange"
+        },
+        "style": "primary"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true
+    }
+  }
+}
