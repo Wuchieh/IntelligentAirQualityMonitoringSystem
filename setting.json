@@ -2,6 +2,7 @@
   "IP": "",
   "PORT": "8080",
   "RUN MODE": "Debug",
+  "JWTsecretKey": "<JWTsecretKey>",
 
   "databaseHost": "<DataBase Host>",
   "databaseUser": "<DataBase Username>",

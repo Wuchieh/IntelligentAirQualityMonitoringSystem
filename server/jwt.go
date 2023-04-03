@@ -8,8 +8,6 @@ import (
 	"time"
 )
 
-var secretKey = "770c3c2537e874a39884a18caff65b893df438fb2a486521029b170ca007785f"
-
 func generateToken(userID uuid.UUID, t int) (string, error) {
 	u := database.User{Id: userID}
 	lineId := u.GetLineID()
@@ -19,7 +17,7 @@ func generateToken(userID uuid.UUID, t int) (string, error) {
 		"lineID": lineId,
 	})
 
-	tokenString, err := token.SignedString([]byte(secretKey))
+	tokenString, err := token.SignedString([]byte(setting.JWTsecretKey))
 	if err != nil {
 		return "", err
 	}
@@ -32,7 +30,7 @@ func getJwtClaims(tokenString string) (jwt.MapClaims, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("sign error: %v", token.Header["alg"])
 		}
-		return []byte(secretKey), nil
+		return []byte(setting.JWTsecretKey), nil
 	})
 
 	if err != nil {
