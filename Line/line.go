@@ -15,6 +15,8 @@ type setting struct {
 	LineChannelSecret      string `json:"lineChannelSecret"`
 	LineChannelAccessToken string `json:"lineChannelAccessToken"`
 	LineCommandPrefix      string `json:"lineCommandPrefix"`
+	RichMenuIdTw           string `json:"richMenuIdTw"`
+	RichMenuIdEn           string `json:"richMenuIdEn"`
 }
 
 func init() {

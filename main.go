@@ -24,10 +24,10 @@ type Setting struct {
 func init() {
 	file, err := os.ReadFile("setting.json")
 	if err != nil {
-		log.Panicln(err)
+		log.Panicln("main os.ReadFile Error", err)
 	}
 	if err = json.Unmarshal(file, &setting); err != nil {
-		log.Panicln(err)
+		log.Panicln("main json.Unmarshal Error", err)
 	}
 }
 
@@ -37,7 +37,8 @@ func main() {
 
 	go func() {
 		defer func() { sc <- syscall.SIGINT }()
-		_ = server.Run(setting.IP, setting.PORT, setting.RUNMODE)
+		err := server.Run(setting.IP, setting.PORT, setting.RUNMODE)
+		log.Println(err)
 	}()
 
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)

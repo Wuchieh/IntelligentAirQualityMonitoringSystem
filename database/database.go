@@ -30,11 +30,11 @@ func init() {
 	var s setting
 
 	if file, err := os.ReadFile("setting.json"); err != nil {
-		panic(err)
+		log.Panicln("database os.ReadFile Error", err)
 	} else {
 		err = json.Unmarshal(file, &s)
 		if err != nil {
-			panic(err)
+			log.Panicln("database json.Unmarshal Error", err)
 		}
 	}
 
@@ -49,12 +49,12 @@ func DatabaseInit() {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, dbname)
 	//fmt.Println(dsn)
 	if db, err = sql.Open("postgres", dsn); err != nil {
-		log.Println(err)
+		log.Println("sql.Open Error", err)
 		Sign <- 1
 		return
 	}
 	if err = db.Ping(); err != nil {
-		log.Println(err)
+		log.Println("db.Ping Error", err)
 		Sign <- 1
 		return
 	}

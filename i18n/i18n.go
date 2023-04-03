@@ -9,10 +9,29 @@ import (
 
 var (
 	languages = make(map[string]map[string]string)
+
+	////go:embed all:languages/*
+	//languageConfigs embed.FS
 )
 
 func init() {
-	join := filepath.Join("i18n")
+	//files, err := languageConfigs.ReadDir("languages")
+	//if err != nil {
+	//	log.Println(err)
+	//}
+	//for _, f := range files {
+	//	file, err := languageConfigs.ReadFile("languages/" + f.Name())
+	//	var lmap map[string]string
+	//	err = json.Unmarshal(file, &lmap)
+	//	if err != nil {
+	//		log.Println("i18n json.Unmarshal Error", err)
+	//	} else {
+	//		languages[f.Name()[:len(f.Name())-len(".json")]] = lmap
+	//	}
+	//
+	//}
+
+	join := filepath.Join("i18n", "languages")
 
 	dir, err := os.ReadDir(join)
 	if err != nil {
@@ -21,18 +40,15 @@ func init() {
 
 	for _, entry := range dir {
 
-		if entry.IsDir() {
-			continue
-		}
+		languageJson := filepath.Join(join, entry.Name())
 
-		languageJson := filepath.Join("i18n", entry.Name())
 		if file, err := os.ReadFile(languageJson); err != nil {
-			log.Println(err)
+			log.Println("i18n os.ReadFile Error", err)
 		} else {
 			var lmap map[string]string
 			err = json.Unmarshal(file, &lmap)
 			if err != nil {
-				log.Println(err)
+				log.Println("i18n json.Unmarshal Error", err)
 			} else {
 				languages[entry.Name()[:len(entry.Name())-len(".json")]] = lmap
 			}

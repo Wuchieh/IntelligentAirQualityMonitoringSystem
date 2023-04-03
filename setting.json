@@ -11,6 +11,8 @@
   "lineChannelSecret": "<Line Channel Secret>",
   "lineChannelAccessToken": "<Line Channel access token>",
   "lineCommandPrefix": "!",
+  "richMenuIdTw" : "<richmenuID_TW>",
+  "richMenuIdEn" : "<richmenuID_EN>",
 
   "redisAddr": "<Redis Host>",
   "redisPassword": "<Redis Password>",
