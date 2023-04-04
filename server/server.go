@@ -6,6 +6,7 @@ import (
 	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/database"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -39,6 +40,11 @@ func Run() error {
 
 	setGinMode(setting.RUNMODE)
 	r := gin.Default()
+
+	r.NoRoute(func(c *gin.Context) {
+		c.AbortWithStatus(http.StatusNotFound)
+	})
+
 	Router(r)
 	return r.Run(setting.IP + ":" + setting.PORT)
 }

@@ -16,8 +16,7 @@ type NotificationRangeReq struct {
 }
 
 func (r NotificationRangeReq) Check() bool {
-	il := []int{0, 1, 2, 4, 8, 12, 24}
-	for _, i := range il {
+	for _, i := range notificationRange {
 		if r.NotificationRange == i {
 			return true
 		}

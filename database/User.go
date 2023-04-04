@@ -47,7 +47,7 @@ func (u *User) CreateNew() error {
 }
 
 func (u *User) Verify(passwordHash string) (*uuid.UUID, bool, error) {
-	stmt, err := db.Prepare("SELECT id,password FROM users WHERE username = $1")
+	stmt, err := db.Prepare("SELECT id,password FROM users WHERE username = $1 AND deleteat = false")
 	if err != nil {
 		return nil, false, pgError(err)
 	}

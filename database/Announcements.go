@@ -45,10 +45,12 @@ func GetAnnouncements(count int) ([]Announcement, error) {
 	if len(AnnouncementList) > 1 {
 		return AnnouncementList, nil
 	}
+
 	query, err := db.Query("SELECT id,title,\"createTime\" FROM announcements WHERE hidden=false ORDER BY \"createTime\" DESC LIMIT $1", count)
 	if err != nil {
 		return nil, err
 	}
+
 	var as []Announcement
 	for query.Next() {
 		var ta tAnnouncement
@@ -70,6 +72,7 @@ func GetAnnouncements(count int) ([]Announcement, error) {
 		}
 		as = append(as, a)
 	}
+
 	AnnouncementList = as
 	return as, err
 }

@@ -1,6 +1,8 @@
 package server
 
 import (
+	"errors"
+	"fmt"
 	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/database"
 	"github.com/gin-gonic/gin"
 	"log"
