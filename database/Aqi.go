@@ -22,6 +22,17 @@ type AqiSearch struct {
 	Limit int
 }
 
+func InsertAqi(aqi Aqi) error {
+	_, err := db.Exec(`INSERT INTO aqi (location, aqi, time) VALUES ($1, $2, now())`,
+		&aqi.Location, aqi.Aqi)
+
+	if err != nil {
+		return fmt.Errorf("failed to insert: %w", err)
+	}
+
+	return nil
+}
+
 func GetAqi(s AqiSearch) ([]Aqi, error) {
 	var dq string
 
