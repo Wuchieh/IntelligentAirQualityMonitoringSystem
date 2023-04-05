@@ -24,6 +24,7 @@ func Router(r *gin.Engine) {
 
 	aqi := api.Group("/aqi")
 	aqi.GET("/search", aqiSearch)
+	aqi.POST("/create", aqiCreate)
 
 	location := api.Group("/location")
 	location.POST("/create", createLocation)
