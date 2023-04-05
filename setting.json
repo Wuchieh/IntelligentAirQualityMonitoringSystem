@@ -2,21 +2,21 @@
   "IP": "",
   "PORT": "8080",
   "RUN MODE": "Debug",
-  "JWTsecretKey": "<JWTsecretKey>",
-  "alertServerAddr": "<alertServerAddr>",
+  "JWTsecretKey": "<JWTsecretKey>=",
+  "ServerAddr": "<ServerAddr>",
 
-  "databaseHost": "<DataBase Host>",
-  "databaseUser": "<DataBase Username>",
-  "databasePassword": "<DataBase Password>",
-  "databaseDbname": "<DataBase Name>",
+  "databaseHost": "<databaseHost>",
+  "databaseUser": "<databaseUser>",
+  "databasePassword": "<databasePassword>",
+  "databaseDbname": "<databaseDbname>",
 
-  "lineChannelSecret": "<Line Channel Secret>",
-  "lineChannelAccessToken": "<Line Channel access token>",
+  "lineChannelSecret": "<lineChannelSecret>",
+  "lineChannelAccessToken": "<lineChannelAccessToken>",
   "lineCommandPrefix": "!",
-  "richMenuIdTw" : "<richmenuID_TW>",
-  "richMenuIdEn" : "<richmenuID_EN>",
+  "richMenuIdTw" : "<richMenuIdTw>",
+  "richMenuIdEn" : "<richMenuIdEn>",
 
-  "redisAddr": "<Redis Host>",
-  "redisPassword": "<Redis Password>",
+  "redisAddr": "<redisAddr>",
+  "redisPassword": "",
   "redisDB":0
 }

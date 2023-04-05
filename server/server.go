@@ -16,11 +16,11 @@ var (
 )
 
 type Setting struct {
-	IP              string `json:"IP"`
-	PORT            string `json:"PORT"`
-	RUNMODE         string `json:"RUN MODE"`
-	JWTsecretKey    string `json:"JWTsecretKey"`
-	AlertServerAddr string `json:"alertServerAddr"`
+	IP           string `json:"IP"`
+	PORT         string `json:"PORT"`
+	RUNMODE      string `json:"RUN MODE"`
+	JWTsecretKey string `json:"JWTsecretKey"`
+	ServerAddr   string `json:"ServerAddr"`
 }
 
 func init() {

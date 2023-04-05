@@ -28,10 +28,10 @@ func lineLogin(event *linebot.Event) {
 	ButtonsTemplateText = i18n.Get(profile.Language, "ButtonsTemplateText")
 	ButtonsTemplateLabel = i18n.Get(profile.Language, "ButtonsTemplateLabel")
 
-	uriAction := linebot.NewURIAction(ButtonsTemplateLabel, "https://www.wuchieh.tk/api/users/login?userId="+loginUUID)
+	uriAction := linebot.NewURIAction(ButtonsTemplateLabel, s.ServerAddr+"/api/users/login?userId="+loginUUID)
 
 	buttonTemplate := linebot.NewButtonsTemplate(
-		"https://www.wuchieh.tk/Logo/Ico/LogoWhile.ico",
+		s.ServerAddr+"/Logo/Ico/LogoWhile.ico",
 		ButtonsTemplateTitle,
 		ButtonsTemplateText,
 		uriAction,

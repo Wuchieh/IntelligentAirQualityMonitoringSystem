@@ -74,7 +74,7 @@ func sendAlert(aqiReq requestApi) {
 		log.Println(err)
 		return
 	}
-	req, err := http.NewRequest("POST", setting.AlertServerAddr+"/v1/danger", bytes.NewReader(marshal))
+	req, err := http.NewRequest("POST", setting.ServerAddr+"/v1/danger", bytes.NewReader(marshal))
 	if err != nil {
 		log.Println(err)
 		return

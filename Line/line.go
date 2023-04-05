@@ -17,6 +17,7 @@ type setting struct {
 	LineCommandPrefix      string `json:"lineCommandPrefix"`
 	RichMenuIdTw           string `json:"richMenuIdTw"`
 	RichMenuIdEn           string `json:"richMenuIdEn"`
+	ServerAddr             string `json:"ServerAddr"`
 }
 
 func init() {
@@ -48,7 +49,7 @@ func createFlexTemplate() *linebot.BubbleContainer {
 		},
 		Hero: &linebot.ImageComponent{
 			Type:       linebot.FlexComponentTypeImage,
-			URL:        "https://www.wuchieh.tk/Logo/Logo.png",
+			URL:        s.ServerAddr + "/Logo/Logo.png",
 			Gravity:    linebot.FlexComponentGravityTypeCenter,
 			Size:       linebot.FlexImageSizeTypeMd,
 			AspectMode: linebot.FlexImageAspectModeTypeFit,
