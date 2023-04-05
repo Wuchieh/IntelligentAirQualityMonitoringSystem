@@ -13,6 +13,12 @@ import (
 	"sync"
 )
 
+type requestApi struct {
+	Lat float64 `json:"lat"`
+	Lng float64 `json:"lng"`
+	Aqi float64 `json:"aqi"`
+}
+
 func aqiSearch(c *gin.Context) {
 	s := database.AqiSearch{Lat: -1}
 	aqis, err := database.GetAqi(s)
