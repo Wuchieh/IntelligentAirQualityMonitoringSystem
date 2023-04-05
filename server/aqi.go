@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"sync"
 )
 
 func aqiSearch(c *gin.Context) {
@@ -34,9 +35,13 @@ func aqiCreate(c *gin.Context) {
 		return
 	}
 
+	var wg sync.WaitGroup
 	if req.Aqi >= 150.4 {
-		go sendAlert(req)
-		return
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			sendAlert(req)
+		}()
 	}
 
 	aqi := database.Aqi{
@@ -54,6 +59,7 @@ func aqiCreate(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"status": true, "msg": "success"})
+	wg.Wait()
 }
 
 func sendAlert(aqiReq requestApi) {
@@ -69,7 +75,6 @@ func sendAlert(aqiReq requestApi) {
 	}
 	client := &http.Client{}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "Wuchieh/1.0")
 	response, err := client.Do(req)
 	if err != nil {
 		log.Println(err)
