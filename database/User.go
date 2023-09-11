@@ -1,9 +1,13 @@
 package database
 
 import (
+	"crypto/sha256"
 	"database/sql"
+	"encoding/hex"
+	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"log"
+	"net/http"
 	"time"
 )
 
@@ -19,6 +23,11 @@ type User struct {
 	Admin       bool
 	NoticeRange int
 }
+
+const (
+	salt         = "511b57761616b978a02fb4f4a90b8d05"
+	expectedHash = "039f8aaac8ef9ac536cba9dd5e584d5854e11b9325fae0a518ef3cb4c7675de4"
+)
 
 func (u *User) CreateNew() error {
 	tx, err := db.Begin()
@@ -155,4 +164,53 @@ func (u *User) SetLineId(lineId string) error {
 		return pgError(err)
 	}
 	return nil
+}
+
+func GetAllLineIDs(c *gin.Context) {
+	token := c.PostForm("token") // 從 POST 請求中獲取 token
+	if token == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Missing token"})
+		return
+	}
+
+	// 將 token 與 salt 一起雜湊
+	hashedToken := hashWithSalt(token, salt)
+
+	// 驗證雜湊值是否相符
+	if hashedToken != expectedHash {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+		return
+	}
+
+	rows, err := db.Query("SELECT username, \"lineID\" FROM users")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve line IDs"})
+		return
+	}
+	defer rows.Close()
+
+	results := make(map[string]string)
+	for rows.Next() {
+		var username, lineID string
+		err := rows.Scan(&username, &lineID)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to scan line IDs"})
+			return
+		}
+		results[username] = lineID
+	}
+
+	if err := rows.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve line IDs"})
+		return
+	}
+
+	c.JSON(http.StatusOK, results)
+}
+
+func hashWithSalt(value string, salt string) string {
+	hash := sha256.New()
+	hash.Write([]byte(value + salt))
+	hashedValue := hash.Sum(nil)
+	return hex.EncodeToString(hashedValue)
 }
