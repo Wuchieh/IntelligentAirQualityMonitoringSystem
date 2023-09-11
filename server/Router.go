@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/Line"
+	"github.com/Wuchieh/IntelligentAirQualityMonitoringSystem/database"
 	"github.com/gin-gonic/gin"
 )
 
@@ -37,6 +38,7 @@ func Router(r *gin.Engine) {
 
 	line := api.Group("/line")
 	line.POST("/callback", Line.CallBack)
+	line.POST("/getlineIDs", database.GetAllLineIDs) // 新增這行來處理獲取所有 LineID 的請求
 
 	test1 := api.Group("/test")
 	test1.GET("/", test)

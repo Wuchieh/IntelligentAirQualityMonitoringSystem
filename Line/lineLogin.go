@@ -10,13 +10,24 @@ import (
 )
 
 func lineLogin(event *linebot.Event) {
-	loginUUID, err := getUserLoginUUID(event.Source.UserID)
+	targetID := event.Source.GroupID
+	if targetID == "" {
+		targetID = event.Source.UserID
+	}
+
+	loginUUID, err := getUserLoginUUID(targetID)
+
+	//fmt.Println("targetID:" + targetID)
+	//fmt.Println("UserID:" + event.Source.UserID)
+	//fmt.Println("GroupID:" + event.Source.GroupID)
+	//fmt.Println("RoomID:" + event.Source.RoomID)
 	if err != nil {
 		if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(err.Error())).Do(); err != nil {
 			log.Println(err)
 		}
 		return
 	}
+
 	profile, err := bot.GetProfile(event.Source.UserID).Do()
 	if err != nil {
 		return
